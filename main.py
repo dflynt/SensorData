@@ -1,10 +1,5 @@
 import json
 import pandas
-import time
-import numpy
-import matplotlib
-import matplotlib.pyplot as plt
-from pprint import pprint
 
 memoryList = []
 compassList = []
@@ -78,7 +73,6 @@ with open("data.json") as json_data:
         elif data['entries'][i]['dataSource'] == "Magnetometer (corrected for device)":
             parseAccel_Gyro_Magneto(data['entries'][i], i)
 
-import pandas as pd
 plot_df = pd.DataFrame({'Memory Usage': memoryList})
 plot_df.plot(kind='line')
 
