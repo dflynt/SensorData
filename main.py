@@ -1,5 +1,6 @@
 import json
-import pandas
+import pandas as pd
+import matplotlib.pyplot as plt
 
 memoryList = []
 compassList = []
@@ -73,11 +74,24 @@ with open("data.json") as json_data:
         elif data['entries'][i]['dataSource'] == "Magnetometer (corrected for device)":
             parseAccel_Gyro_Magneto(data['entries'][i], i)
 
-plot_df = pd.DataFrame({'Memory Usage': memoryList})
-plot_df.plot(kind='line')
+#plot_df = pd.DataFrame({'Memory Usage': memoryList})
+#ax = plt.subplot(111, frame_on=False)
+#ax.xaxis.set_visible(False)
+#ax.yaxis.set_visible(False)
+#table(ax, plot_df)
+plt.plot(memoryList)
+plt.title("Memory Usage")
+plt.show()
+#plt.savefif('memusage.png')
+
+#plot_df.plot(kind='line')
 
 compass_df = pd.DataFrame({"Compass Direction": compassList})
 compass_df.plot(kind='hist')
+
+plt.plot(compassList)
+plt.title("Compass Direction")
+plt.show()
 
 print("Average GPS position:", end = " ")
 print(" ".join(calcTripleAvg(GPSList)))
